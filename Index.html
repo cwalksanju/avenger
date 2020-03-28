@@ -1,0 +1,305 @@
+<!-- Created by C-Walk Sanju--><!doctype html><html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Avengers End Game</title>
+<style type="text/css" id="dcoder_stylesheet">/* Created by C-Walk Sanju */
+
+body, html{
+    padding: 0;
+    margin: 0;
+}
+body{
+    background-image: linear-gradient(to right bottom, #05020b, #11091a, #170f26, #1d1333, #241540);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+*{
+    font-family: Arial, Helvetica, sans-serif;
+    font-style: italic;
+}
+.container{
+    display: flex;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    flex-direction: column;
+    overflow: hidden;
+}
+.container > img{
+    margin-top: 20px;
+    height: 65%;
+    background-size: cover;
+
+    box-shadow: 0 0 5px #fff, 
+                0 0 10px #fff, 
+                0 0 15px #5b29ab, 
+                0 0 20px #5b29ab, 
+                0 0 25px #5b29ab, 
+                0 0 30px #5b29ab, 
+                0 0 45px #5b29ab;
+}
+
+h4, #countDown{
+    display: flex;
+    align-items: center;
+    margin: .7em;
+    color: #fff;
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #5b29ab, 0 0 40px #5b29ab, 0 0 50px #5b29ab, 0 0 60px #5b29ab, 0 0 70px #5b29ab;
+}
+
+#animArea{
+    height: 4px;
+    width: 100%;
+}
+
+.border-bottom{
+    -webkit-animation: anim1 1500ms; 
+      -moz-animation:    anim1 1500ms;
+      -o-animation:      anim1 1500ms;
+      animation:         anim1 1500ms;
+    background-image:  linear-gradient(to right, rgba(255,0,0,0), rgb(91, 41, 171));
+    box-shadow: 2px 2px 3px 0px #5b29ab;
+    transform: translateX(-110%);
+}
+
+@keyframes anim1{
+    from{
+        transform: translateX(-110%);
+    }
+    to{
+        transform: translateX(110%);
+    }
+}
+@-webkit-keyframes anim1{
+    from{
+        transform: translateX(-110%);
+    }
+    to{
+        transform: translateX(110%);
+    }
+}
+@-moz-keyframes anim1{
+    from{
+        transform: translateX(-110%);
+    }
+    to{
+        transform: translateX(110%);
+    }
+}
+@-o-keyframes anim1{
+    from{
+        transform: translateX(-110%);
+    }
+    to{
+        transform: translateX(110%);
+    }
+}
+.github{
+    text-decoration: none;
+    color: #ffffff;
+    text-shadow: 0 0 5px #fff, 
+                0 0 10px #fff, 
+                0 0 15px #5b29ab, 
+                0 0 20px #5b29ab, 
+                0 0 25px #5b29ab, 
+                0 0 30px #5b29ab, 
+                0 0 45px #5b29ab;
+}
+
+button{
+    background: none;
+    border:none;
+    outline: none;
+}
+button img{
+    width: 1.8em;
+    height: 1.8em;
+    outline: none;
+    filter: invert(100%);
+}
+.loading{
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 44;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.spinner{
+    background-color:#5b29ab;
+    width: 0px;
+    height: 5px;
+    
+}
+@-webkit-keyframes spin{
+    from{
+        transform: rotate(0deg);
+    }
+    to{
+        transform: rotate(360deg);
+    }
+}
+@-moz-keyframes spin{
+    from{
+        transform: rotate(0deg);
+    }
+    to{
+        transform: rotate(360deg);
+    }
+}
+@-o-keyframes spin{
+    from{
+        transform: rotate(0deg);
+    }
+    to{
+        transform: rotate(360deg);
+    }
+}
+@keyframes spin{
+    from{
+        transform: rotate(0deg);
+    }
+    to{
+        transform: rotate(360deg);
+    }
+}</style></head>
+<body>
+    <div class="container">
+        <img id="show" src="https://raw.githubusercontent.com/Jaseemakhtar/pics/master/steve.jpg" alt="">
+        <h4> <button id="btn"> <img id="btnImage" src="https://image.flaticon.com/icons/svg/26/26025.svg" alt=">"></button> AVENGERS − ENDGAME <br>#Whateverittakes</h4>
+        <div id="countDown"></div>
+        <audio id="myAudio">
+            <source src="https://raw.githubusercontent.com/Jaseemakhtar/pics/master/whatever_it_takes.ogg" type="audio/ogg">
+            Your browser does not support the audio element.
+        </audio>
+        <div class="border-bottom" id="animArea"></div>
+        <footer style="margin-top: .99em; color: #fff;">
+            <h5 style="margin: .3em;">Made with ♥</h5>
+            <h6 style="margin: .3em;">by <a class="github" href="https://cwalksanju.github.io/p2/Index.html">C-Walk Sanju ©</a></h6>
+        </footer>
+    </div>
+    
+    <div class="loading">
+            <div class="spinner"></div>
+            <h4>Loading...<span id="per">0</span>%</h4>
+    </div>
+    
+
+<script type="text/javascript" id="dcoder_script">// Created by C-WalK Sanju
+
+window.onload = function(){
+    var player = document.getElementById('myAudio'),
+    btn = document.getElementById('btn'),
+    btnImg = document.getElementById('btnImage'),
+    pauseUrl = 'https://image.flaticon.com/icons/svg/61/61039.svg',
+    playUrl = 'https://image.flaticon.com/icons/svg/26/26025.svg',
+    x,
+    count = 0,
+    imgs = [
+        'bruce.jpg', 'okoye.jpg', 'steve.jpg', 'steve.jpg', 'nebula.jpg', 'nebula.jpg', 'pepper.jpg', 'clint.jpg', 'clint.jpg', 'rocket.jpg', 'nat.jpg','nat.jpg','rody.jpg', 'scott.jpg','valkyrie.jpg','wong.jpg','bucky.jpg','tony.jpg','tony.jpg', 'tony.jpg', 'groot.jpg','hope.jpg','loki.jpg','sam.jpg', 'scarlett.jpg', 'vision.jpg', 
+            'fury.jpg', 'quill.jpg', 'gamora.jpg', 'mantis.jpg', 'drax.jpg', 'parker.jpg', 'tchalla.jpg', 'strange.jpg', 'thor.jpg', 'thor.jpg', 'caroll.jpg', 'caroll.jpg'
+    ],
+    showCase = document.getElementById('show'),
+    animArea = document.getElementById('animArea'),
+    loaded = 0,
+    first = 0,
+    countDownDate = new Date("Apr 26, 2019 00:00:00").getTime(),
+    countDownDisplay = document.getElementById('countDown'),
+    c = 0,
+    width = window.innerWidth,
+    ll = 0,
+    spinner = document.getElementsByClassName('spinner')[0],
+    perIndicator = document.getElementById('per')
+    ;
+    
+    var incr = width / imgs.length;
+
+    player.addEventListener('ended', function(){
+        count = 0;
+        btnImg.src = playUrl;
+        if(first == 0){
+            alert("We Know That Our World Is Facing A Corana Virus.\n#Whateverittakes Let Us Fight Back😠\n\n   Coder | C-Walk Sanju❤️");
+            first = 1;
+        }
+    });
+    btn.addEventListener('click', function(){
+        if(player.paused){
+            player.play();
+            btnImg.src = pauseUrl;
+            x = setInterval(slide, 1000);
+        }
+    });
+
+    function slide(){
+        
+        if(count == 3){
+            animArea.classList.add('border-bottom');
+        }else if(count == 18){
+            animArea.classList.add('border-bottom');
+        }else if(count == 8){
+            animArea.classList.add('border-bottom');
+        }else if(count == 11){
+            animArea.classList.add('border-bottom');
+        }else{
+            animArea.classList.remove('border-bottom');
+        }
+        
+        if(!player.paused){
+            showCase.src = 'https://raw.githubusercontent.com/Jaseemakhtar/pics/master/' + imgs[count] ;
+            if(count == imgs.length - 1){
+                clearInterval(x);
+            }else{
+                count++;
+            }
+            
+        }
+    }
+
+    function preload(urls){
+        urls.forEach(function(url){
+            var newImg = new Image();
+            newImg.onload = function() {
+                loaded++;
+                ll += incr;
+                perIndicator.innerHTML = Math.floor((ll / width) * 100);
+                spinner.style.width = ll + 'px';
+                if(loaded == urls.length -1){
+                    afterload();
+                }
+            }
+            newImg.src = 'https://raw.githubusercontent.com/Jaseemakhtar/pics/master/' + url;
+        });
+    }
+
+    function afterload(){
+        document.querySelector('.loading').style.display = 'none';
+        alert("Press below Play button to start");
+        c = setInterval(function() {
+
+        var now = new Date().getTime();
+        
+        var distance = countDownDate - now;
+          
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+          
+        countDownDisplay.innerHTML = days + "d:" + hours + "h:" + minutes + "m:" + seconds + "s";
+          
+        if (distance < 0) {
+          clearInterval(c);
+          countDownDisplay.innerHTML = "The movie is in theatres now!";
+        }
+      }, 1000)
+    }
+    preload(imgs);
+}</script></body></html>
